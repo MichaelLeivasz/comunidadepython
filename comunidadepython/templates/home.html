@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container mt-3">
+    <h1 style="color: black">Um Espaço para Compartilhar Informações Sobre uma das Linguagens de Programação Mais Utilizadas no Mundo!</h1>
+    <h3 style="color: gray">Iniciantes, Especialistas e Interessados em Python</h3>
+    <hr>
+    {% for post in posts%}
+        <div class="row border mt-4 p-3 meupost">
+            <div class="col col-2">
+                <div class="image pe-4">
+                    <img src="{{ url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}" class="rounded" width="170" >
+                </div>
+                <strong>{{ post.autor.usuario }}</strong>
+                <br>
+                <button type="button" class="btn btn-dark mt-2"> {{ post.autor.cursos }}</button>
+            </div>
+            <div class="col col-8">
+                <a style="text-decoration: none" href="{{ url_for('exibir_post', post_id=post.id) }}"><h3> {{ post.titulo }} </h3></a>
+                <p> {{ post.corpo }} </p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
